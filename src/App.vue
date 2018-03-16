@@ -2,7 +2,6 @@
   <v-app>
     <v-navigation-drawer
       v-model="drawer"
-      disable-resize-watcher
       absolute
       app
       class="above-map"
@@ -22,14 +21,12 @@
           <v-list-tile
             v-for="item in category.items"
             :key="item.name"
+            @click="center = item.latLon; zoom = 15; coords = [item.latLon]; drawer = false"
           >
             <v-list-tile-content>
               <v-list-tile-title>
                 {{ item.name }}
               </v-list-tile-title>
-              <!-- <v&#45;list&#45;tile&#45;subtitle> -->
-              <!--   120 SW 8th St, Miami, FL 33130, USA -->
-              <!-- </v&#45;list&#45;tile&#45;subtitle> -->
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
@@ -43,7 +40,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <leaflet-map />
+      <leaflet-map v-bind="{ zoom, center, coords }"/>
     </v-content>
   </v-app>
 </template>
@@ -63,15 +60,23 @@
           name: 'Education',
           items: [{
             name: 'Ironhack',
+            latLon: [25.776, -80.196],
           }],
           icon: 'school',
         }, {
           name: 'Accelerator',
           items: [{
-            'name': 'Watsco Ventures',
+            name: 'Watsco Ventures',
+            latLon: [25.731, -80.236],
           }],
           icon: 'directions_run',
         }],
+        center: [25.766, -80.195],
+        coords: [
+          // [25.776, -80.196],
+          // [25.731, -80.236],
+        ],
+        zoom: 13,
       }
     },
   }
