@@ -8,18 +8,18 @@
     >
       <v-list>
         <v-list-group
-          v-for="category in categories"
-          :key="category.name"
-          :prepend-icon="category.icon"
+          v-for="cat in cats"
+          :key="cat.name"
+          :prepend-icon="cat.icon"
           no-action
         >
           <v-list-tile slot="activator">
             <v-list-tile-content>
-              {{ category.name }}
+              {{ cat.name }}
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile
-            v-for="item in category.items"
+            v-for="item in cat.items"
             :key="item.name"
             @click="center = item.latLon; zoom = 15; coords = [item.latLon]; drawer = false"
           >
@@ -47,6 +47,7 @@
 
 <script>
   import LeafletMap from './components/LeafletMap.vue'
+  import { locations, categories } from '@/data'
 
   export default {
     name: 'app',
@@ -56,21 +57,8 @@
     data() {
       return {
         drawer: false,
-        categories: [{
-          name: 'Education',
-          items: [{
-            name: 'Ironhack',
-            latLon: [25.776, -80.196],
-          }],
-          icon: 'school',
-        }, {
-          name: 'Accelerator',
-          items: [{
-            name: 'Watsco Ventures',
-            latLon: [25.731, -80.236],
-          }],
-          icon: 'directions_run',
-        }],
+        categories,
+        locations,
         center: [25.766, -80.195],
         coords: [
           // [25.776, -80.196],
@@ -78,6 +66,16 @@
         ],
         zoom: 13,
       }
+    },
+    computed: {
+      cats() {
+        return this.categories.map(cat => {
+          cat.items = this.locations.filter(loc => {
+            return loc.categories.indexOf(cat.name) >= 0
+          })
+          return cat
+        })
+      },
     },
   }
 </script>
