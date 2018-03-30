@@ -1,6 +1,8 @@
 # navigate-miami-map
 A Leaflet map for Navigate Miami
 
+**Demo** - https://maurop123.github.io/navigate-miami-map/
+
 ## How to add to your project
 
 - add files in dist folder to your project
