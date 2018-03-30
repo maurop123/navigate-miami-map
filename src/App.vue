@@ -6,7 +6,7 @@
       app
       class="above-map"
     >
-      <v-list>
+      <v-list three-line>
         <v-list-group
           v-for="cat in cats"
           :key="cat.name"
@@ -27,6 +27,12 @@
               <v-list-tile-title>
                 {{ item.name }}
               </v-list-tile-title>
+              <v-list-tile--sub-title class="body-1">
+                {{ item.address }}
+              </v-list-tile--sub-title>
+              <v-list-tile--sub-title class="caption">
+                {{ item.website.text }}
+              </v-list-tile--sub-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
