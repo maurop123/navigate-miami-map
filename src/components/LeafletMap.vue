@@ -3,11 +3,20 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import VueCustomElement from 'vue-custom-element'
   // import "leaflet/dist/leaflet.css";
   import L from 'leaflet'
+  import LocationTile from '@/components/LocationTile.vue'
+
+  Vue.use(VueCustomElement)
+  Vue.customElement('location-tile', LocationTile)
 
   export default {
     name: 'leaflet-map',
+    components: {
+      LocationTile,
+    },
     props: {
       center: {
         type: Array,
@@ -58,6 +67,19 @@
         this.markers = this.coords.map(coord => {
           const marker = L.marker(coord)
           this.map.addLayer(marker)
+          marker.bindPopup(`
+                <location-tile />
+          `).openPopup()
+          // marker.bindPopup(`
+          //       <location-tile />
+          // `).openPopup()
+  //         marker.bindPopup(`
+  // <v-list-tile-content>
+  //   <v-list-tile-title>
+  //     {{ 'Info Unavailable' }}
+  //   </v-list-tile-title>
+  // </v-list-tile-content>
+  //         `).openPopup()
           return marker
         })
       },

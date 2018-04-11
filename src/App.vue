@@ -23,17 +23,7 @@
             :key="item.name"
             @click="center = item.latLon; zoom = 15; coords = [item.latLon]; drawer = false"
           >
-            <v-list-tile-content>
-              <v-list-tile-title>
-                {{ item.name }}
-              </v-list-tile-title>
-              <v-list-tile--sub-title class="body-1">
-                {{ item.address }}
-              </v-list-tile--sub-title>
-              <v-list-tile--sub-title class="caption">
-                {{ item.website.text }}
-              </v-list-tile--sub-title>
-            </v-list-tile-content>
+            <location-tile v-bind="item" />
           </v-list-tile>
         </v-list-group>
       </v-list>
@@ -52,13 +42,15 @@
 </template>
 
 <script>
-  import LeafletMap from './components/LeafletMap.vue'
+  import LeafletMap from '@/components/LeafletMap.vue'
   import { locations, categories } from '@/data'
+  import LocationTile from '@/components/LocationTile.vue'
 
   export default {
     name: 'app',
     components: {
       LeafletMap,
+      LocationTile,
     },
     data() {
       return {
