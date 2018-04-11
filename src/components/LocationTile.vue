@@ -9,8 +9,8 @@
         {{ address }}
       </v-list-tile-title>
       <v-list-tile-sub-title class="caption"
-        v-if="website && website.text">
-        {{ website.text }}
+        v-if="siteText">
+        {{ siteText }}
       </v-list-tile-sub-title>
     </template>
     <template v-else>
@@ -27,7 +27,8 @@
     props: {
       name: String,
       address: String,
-      website: Object,
+      siteText: String,
+      siteUrl: String,
     },
   }
 </script>

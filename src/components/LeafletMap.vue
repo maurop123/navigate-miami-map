@@ -8,6 +8,7 @@
   // import "leaflet/dist/leaflet.css";
   import L from 'leaflet'
   import LocationTile from '@/components/LocationTile.vue'
+  import { locations } from '@/data'
 
   Vue.use(VueCustomElement)
   Vue.customElement('location-tile', LocationTile)
@@ -34,8 +35,23 @@
     data() {
       return {
         map: null,
-        markers: [],
+        locations,
       }
+    },
+    computed: {
+      markers() {
+        return this.locations.map(l => {
+          const marker = L.marker(l.latLon)
+          marker.bindPopup(`
+            <location-tile
+              name="${l.name}"
+              address="${l.address}"
+              site-text="${l.siteText}"
+            />
+          `)
+          return marker
+        })
+      },
     },
     watch: {
       center() {
@@ -44,8 +60,8 @@
       zoom() {
         this.setMapView()
       },
-      coords() {
-        this.setMapMarkers()
+      coords(val) {
+        this.setMapMarkers(val)
       },
     },
     mounted() {
@@ -54,34 +70,24 @@
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
       }).addTo(this.map)
       this.setMapView()
+      this.showAllMarkers()
     },
     methods: {
       setMapView() {
         this.map.setView(this.center, this.zoom)
       },
-      setMapMarkers() {
+      hideAllMarkers() {
         this.markers.forEach(marker => {
           this.map.removeLayer(marker)
         })
-
-        this.markers = this.coords.map(coord => {
-          const marker = L.marker(coord)
+      },
+      showAllMarkers() {
+        this.markers.forEach(marker => {
           this.map.addLayer(marker)
-          marker.bindPopup(`
-                <location-tile />
-          `).openPopup()
-          // marker.bindPopup(`
-          //       <location-tile />
-          // `).openPopup()
-  //         marker.bindPopup(`
-  // <v-list-tile-content>
-  //   <v-list-tile-title>
-  //     {{ 'Info Unavailable' }}
-  //   </v-list-tile-title>
-  // </v-list-tile-content>
-  //         `).openPopup()
-          return marker
         })
+      },
+      setMapMarkers(coords) {
+        this.hideAllMarkers()
       },
     },
   }
