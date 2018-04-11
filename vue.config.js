@@ -2,7 +2,7 @@ module.exports = {
   lintOnSave: false,
   configureWebpack: {
     output: {
-      publicPath: '/navigate-miami-map',
+      publicPath: process.env.PUBLIC_PATH,
     },
   },
 }
