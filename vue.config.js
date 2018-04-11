@@ -1,9 +1,7 @@
 module.exports = {
   lintOnSave: false,
-  configureWebpack: {
-    output: {
-      publicPath: process.env.PUBLIC_PATH,
-    },
+  configureWebpack: cfg => {
+    cfg.output.publicPath = process.env.PUBLIC_PATH
   },
   outputDir: 'docs',
 }
