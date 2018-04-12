@@ -5,6 +5,8 @@ export const locations = [{
   address: '120 SW 8th St, Miami, FL 33130',
   siteText: 'www.ironhack.com/en',
   siteUrl: 'http://http://www.ironhack.com/en',
+  description: '',
+  image: '',
 }, {
   name: 'Watsco Ventures',
   categories: ['Accelerator'],
@@ -12,6 +14,8 @@ export const locations = [{
   address: '2665 S Bayshore Dr, Miami, FL 33133',
   siteUrl: 'http://www.watscoventures.com/',
   siteText: 'www.watscoventures.com',
+  description: '',
+  image: '',
 }]
 
 export const categories = [{

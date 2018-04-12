@@ -9,6 +9,7 @@
   import L from 'leaflet'
   import LocationTile from '@/components/LocationTile.vue'
   import { locations } from '@/data'
+  import bus from '@/bus'
 
   Vue.use(VueCustomElement)
   Vue.customElement('location-tile', LocationTile)
@@ -34,6 +35,7 @@
     },
     data() {
       return {
+        bus,
         map: null,
         locations,
       }
@@ -41,7 +43,10 @@
     computed: {
       markers() {
         return this.locations.map(l => {
-          const marker = L.marker(l.latLon)
+          const marker = L.marker(l.latLon, {
+            title: l.name,
+            alt: l.name,
+          })
           marker.bindPopup(`
             <location-tile
               name="${l.name}"
@@ -53,28 +58,18 @@
         })
       },
     },
-    watch: {
-      center() {
-        this.setMapView()
-      },
-      zoom() {
-        this.setMapView()
-      },
-      coords(val) {
-        this.setMapMarkers(val)
-      },
-    },
     mounted() {
       this.map = L.map(this.$refs.map)
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
       }).addTo(this.map)
-      this.setMapView()
+      this.setMapView(this.center, this.zoom)
       this.showAllMarkers()
+      this.bus.$on('pickLocation', val => this.handleLocationClick(val))
     },
     methods: {
-      setMapView() {
-        this.map.setView(this.center, this.zoom)
+      setMapView(center, zoom) {
+        this.map.setView(center, zoom)
       },
       hideAllMarkers() {
         this.markers.forEach(marker => {
@@ -86,8 +81,10 @@
           this.map.addLayer(marker)
         })
       },
-      setMapMarkers(coords) {
-        this.hideAllMarkers()
+      handleLocationClick(loc) {
+        this.setMapView(loc.latLon, 15)
+        this.markers.filter(m => m.options.title === loc.name)
+        .forEach(m => m.openPopup())
       },
     },
   }

@@ -18,10 +18,10 @@
               {{ cat.name }}
             </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile v-for="item in cat.items"
-            @click="center = item.latLon; zoom = 15; coords = [item.latLon]; drawer = false"
+          <v-list-tile :key="item.name" v-for="item in cat.items"
+            @click="bus.$emit('pickLocation', item); drawer = false"
           >
-            <loc-tile :key="item.name" v-bind="item" />
+            <loc-tile v-bind="item" />
           </v-list-tile>
         </v-list-group>
       </v-list>
@@ -43,6 +43,7 @@
   import LeafletMap from '@/components/LeafletMap.vue'
   import { locations, categories } from '@/data'
   import LocTile from '@/components/LocationTile.vue'
+  import bus from '@/bus'
 
   export default {
     name: 'app',
@@ -52,6 +53,7 @@
     },
     data() {
       return {
+        bus,
         drawer: false,
         categories,
         locations,
