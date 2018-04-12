@@ -14,7 +14,7 @@
           no-action
         >
           <v-list-tile slot="activator">
-            <v-list-tile-content>
+            <v-list-tile-content :style="{ color: cat.color }">
               {{ cat.name }}
             </v-list-tile-content>
           </v-list-tile>

@@ -21,9 +21,11 @@ export const locations = [{
 export const categories = [{
   name: 'Education',
   icon: 'school',
+  color: 'rgb(0,102,255)',
 }, {
   name: 'Accelerator',
   icon: 'directions_run',
+  color: 'red',
 }]
 
 export default {
