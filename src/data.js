@@ -94,7 +94,7 @@ export const locations = [{
   image: '',
 }, {
   name: 'Moonlighter',
-  categories: ['Coworking'],
+  categories: ['Maker Space'],
   latLon: [25.796370, -80.198294],
   address: '2041 NW 1st Pl, Miami, FL 33127',
   description: '',
@@ -135,7 +135,7 @@ export const categories = [{
   color: 'rgb(0,102,255)',
 }, {
   name: 'Funding',
-  icon: '$',
+  icon: 'flash_on',
   color: 'green',
 }, {
   name: 'Regular Events',
@@ -148,7 +148,11 @@ export const categories = [{
 }, {
   name: 'Coworking',
   icon: 'business',
-  color: 'pink',
+  color: '#e6aeb8',
+}, {
+  name: 'Maker Space',
+  icon: 'build',
+  color: 'purple',
 }]
 
 export default {
