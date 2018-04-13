@@ -4,7 +4,7 @@
       v-model="drawer"
       absolute
       app
-      class="above-map"
+      id="sidebar"
     >
       <v-list three-line>
         <v-list-group
@@ -25,6 +25,19 @@
           </v-list-tile>
         </v-list-group>
       </v-list>
+      <div id="credits" class="mt-5 text-xs-center">
+        <h3>Made with <v-icon class="red--text">favorite</v-icon> thanks to...</h3>
+        <v-list>
+          <v-list-tile v-for="{name, link} in credits" :key="name"
+            @click.prevent="open(link)">
+            <v-list-tile-content :class="{ underline: link }">
+              <v-list-tile-sub-title class="text-xs-center">
+                {{ name }}
+              </v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </div>
     </v-navigation-drawer>
     <v-toolbar app color="white">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -41,7 +54,7 @@
 
 <script>
   import LeafletMap from '@/components/LeafletMap.vue'
-  import { locations, categories } from '@/data'
+  import { locations, categories, credits } from '@/data'
   import LocTile from '@/components/LocationTile.vue'
   import bus from '@/bus'
 
@@ -55,13 +68,10 @@
       return {
         bus,
         drawer: false,
+        credits,
         categories,
         locations,
         center: [25.766, -80.195],
-        coords: [
-          // [25.776, -80.196],
-          // [25.731, -80.236],
-        ],
         zoom: 13,
       }
     },
@@ -75,11 +85,31 @@
         })
       },
     },
+    methods: {
+      open(link) {
+        if (link) window.open(link)
+      },
+    },
   }
 </script>
 
 <style scoped lang="scss">
-  .above-map {
+  #sidebar {
     z-index: 2000;
+    height: 100%;
+  }
+
+  #credits {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    & /deep/ .list__tile {
+      height: 36px;
+    }
+  }
+
+  .underline {
+    text-decoration: underline;
   }
 </style>

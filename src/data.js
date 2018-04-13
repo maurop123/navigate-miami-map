@@ -155,7 +155,22 @@ export const categories = [{
   color: 'purple',
 }]
 
+export const credits = [{
+  name: 'Code For Miami',
+  link: 'http://codefor.miami/',
+}, {
+  name: 'MauroMadeIt',
+  link: 'http://mauromadeit.com/',
+}, {
+  name: 'MarioTheMaker',
+}, {
+  name: 'Chris Scott',
+}, {
+  name: 'Christine Jones',
+}]
+
 export default {
   locations,
   categories,
+  credits,
 }
