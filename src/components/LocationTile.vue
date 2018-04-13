@@ -9,7 +9,7 @@
         {{ address }}
       </v-list-tile-title>
       <v-list-tile-sub-title class="caption"
-        v-if="siteText">
+        v-if="siteText && siteText !== 'undefined'">
         {{ siteText }}
       </v-list-tile-sub-title>
     </template>
