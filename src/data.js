@@ -163,6 +163,7 @@ export const credits = [{
   link: 'http://mauromadeit.com/',
 }, {
   name: 'MarioTheMaker',
+  link: 'http://mariothemaker.com/',
 }, {
   name: 'Chris Scott',
 }, {
