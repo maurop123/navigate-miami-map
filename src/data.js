@@ -143,11 +143,11 @@ export const categories = [{
   color: '#dada00',
 }, {
   name: 'Economic Dev',
-  icon: 'account_balance',
+  icon: 'trending_up',
   color: 'orange',
 }, {
   name: 'Coworking',
-  icon: 'business',
+  icon: 'devices',
   color: '#e6aeb8',
 }, {
   name: 'Maker Space',
