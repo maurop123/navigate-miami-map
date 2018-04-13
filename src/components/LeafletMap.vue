@@ -30,10 +30,6 @@
         type: Number,
         default: 13,
       },
-      coords: {
-        type: Array,
-        default: () => [],
-      },
     },
     data() {
       return {

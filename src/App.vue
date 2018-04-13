@@ -26,8 +26,15 @@
         </v-list-group>
       </v-list>
       <div id="credits" class="mt-5 text-xs-center">
-        <h3>Made with <v-icon class="red--text">favorite</v-icon> thanks to...</h3>
         <v-list>
+        <v-list-group>
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title class="text-xs-center">
+                Made with <v-icon class="red--text">favorite</v-icon> thanks to...
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
           <v-list-tile v-for="{name, link} in credits" :key="name"
             @click.prevent="open(link)">
             <v-list-tile-content :class="{ underline: link }">
@@ -36,6 +43,7 @@
               </v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
+        </v-list-group>
         </v-list>
       </div>
     </v-navigation-drawer>
@@ -47,7 +55,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <leaflet-map v-bind="{ zoom, center, coords }"/>
+      <leaflet-map v-bind="{ zoom, center }"/>
     </v-content>
   </v-app>
 </template>
