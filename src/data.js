@@ -138,13 +138,13 @@ export const categories = [{
   icon: 'flash_on',
   color: 'green',
 }, {
-  name: 'Regular Events',
-  icon: 'audiotrack',
-  color: '#dada00',
-}, {
   name: 'Economic Dev',
   icon: 'trending_up',
   color: 'orange',
+}, {
+  name: 'Regular Events',
+  icon: 'audiotrack',
+  color: '#dada00',
 }, {
   name: 'Coworking',
   icon: 'devices',
