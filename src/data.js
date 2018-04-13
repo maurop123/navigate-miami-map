@@ -135,7 +135,7 @@ export const categories = [{
   color: 'rgb(0,102,255)',
 }, {
   name: 'Funding',
-  icon: 'euro_symbol',
+  icon: '$',
   color: 'green',
 }, {
   name: 'Regular Events',
