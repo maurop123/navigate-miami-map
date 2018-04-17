@@ -1,71 +1,53 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+    <!-- <v&#45;navigation&#45;drawer -->
+    <!--   persistent -->
+    <!--   :mini&#45;variant="miniVariant" -->
+    <!--   :clipped="clipped" -->
+    <!--   v&#45;model="drawer" -->
+    <!--   enable&#45;resize&#45;watcher -->
+    <!--   fixed -->
+    <!--   app -->
+    <!-- > -->
+    <!--   <v&#45;list> -->
+    <!--     <v&#45;list&#45;tile -->
+    <!--       value="true" -->
+    <!--       v&#45;for="(item, i) in items" -->
+    <!--       :key="i" -->
+    <!--     > -->
+    <!--       <v&#45;list&#45;tile&#45;action> -->
+    <!--         <v&#45;icon v&#45;html="item.icon"></v&#45;icon> -->
+    <!--       </v&#45;list&#45;tile&#45;action> -->
+    <!--       <v&#45;list&#45;tile&#45;content> -->
+    <!--         <v&#45;list&#45;tile&#45;title v&#45;text="item.title"></v&#45;list&#45;tile&#45;title> -->
+    <!--       </v&#45;list&#45;tile&#45;content> -->
+    <!--     </v&#45;list&#45;tile> -->
+    <!--   </v&#45;list> -->
+    <!-- </v&#45;navigation&#45;drawer> -->
+    <v-toolbar app>
+      <!-- <v&#45;toolbar&#45;side&#45;icon @click.stop="drawer = !drawer"></v&#45;toolbar&#45;side&#45;icon> -->
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
+    <!-- <v&#45;navigation&#45;drawer -->
+    <!--   temporary -->
+    <!--   :right="right" -->
+    <!--   v&#45;model="rightDrawer" -->
+    <!--   fixed -->
+    <!--   app -->
+    <!-- > -->
+    <!--   <v&#45;list> -->
+    <!--     <v&#45;list&#45;tile @click="right = !right"> -->
+    <!--       <v&#45;list&#45;tile&#45;action> -->
+    <!--         <v&#45;icon>compare_arrows</v&#45;icon> -->
+    <!--       </v&#45;list&#45;tile&#45;action> -->
+    <!--       <v&#45;list&#45;tile&#45;title>Switch drawer (click me)</v&#45;list&#45;tile&#45;title> -->
+    <!--     </v&#45;list&#45;tile> -->
+    <!--   </v&#45;list> -->
+    <!-- </v&#45;navigation&#45;drawer> -->
   </v-app>
 </template>
 
@@ -75,17 +57,7 @@ export default {
   name: 'App',
   data () {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Location Editor - Nav Miami'
     }
   }
 }
