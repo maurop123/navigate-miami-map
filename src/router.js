@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
 import Edit from '@/views/Edit'
+import LeafletMap from '@/components/LeafletMap'
 
 Vue.use(Router)
 
@@ -11,12 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Edit
+      component: LeafletMap,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/edit',
+      name: 'edit',
+      component: Edit,
     }
   ]
 })

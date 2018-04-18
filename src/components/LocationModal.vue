@@ -1,8 +1,9 @@
 <template>
   <crud-dialog
     header="Edit Location"
-    :item="selectedItem"
+    :item="item"
     @save="save"
+    @cancel="cancel"
   >
     <template slot-scope="{ editedItem }">
       <v-flex xs12 sm6>
@@ -31,17 +32,15 @@
 </template>
 
 <script>
-  import CrudDialog from '@/components/LocationEditDialog'
+  import CrudDialog from '@/components/CrudDialog'
 
   export default {
     name: 'location-modal',
+    props: {
+      item: Object,
+    },
     components: {
       CrudDialog,
-    },
-    data() {
-      return {
-        selectedItem: {},
-      }
     },
     computed: {
       categories() {
@@ -52,6 +51,9 @@
       save(item) {
         this.$store.dispatch('save', item)
         this.$emit('save', item)
+      },
+      cancel() {
+        this.$emit('cancel')
       },
     },
   }

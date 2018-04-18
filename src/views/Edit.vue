@@ -5,6 +5,7 @@
         <location-modal
           :item="selectedItem"
           @save="resetSelectedItem"
+          @cancel="resetSelectedItem"
         />
         <v-data-table
           :headers="locationHeaders"
@@ -80,6 +81,7 @@
       },
       deleteItem(item) {
         this.$store.dispatch('del', item)
+        this.resetSelectedItem()
       },
       resetSelectedItem() {
         this.selectedItem = {}
