@@ -1,5 +1,5 @@
 {
-  "name": "locations-form-nav-miami",
+  "name": "navigate-miami",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,8 @@
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.6",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
@@ -27,6 +28,7 @@
     "@vue/test-utils": "^1.0.0-beta.10",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.0.4",
+    "mauromadeit-vue-commons": "../commons-vue/",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue-cli-plugin-vuetify": "^0.1.0",

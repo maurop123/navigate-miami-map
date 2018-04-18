@@ -10,6 +10,8 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
+store.dispatch('hydrate')
+
 new Vue({
   router,
   store,
