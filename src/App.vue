@@ -75,10 +75,11 @@
         bus,
         drawer: false,
         credits,
-        categories,
+        // categories,
       }
     },
     computed: {
+      categories() { return this.$store.state.categories },
       locations() { return this.$store.state.locations },
       cats() {
         return this.categories.map(cat => {

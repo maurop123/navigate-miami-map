@@ -15,6 +15,9 @@
           :items="categories"
         />
       </v-flex>
+      <v-flex xs12>
+        <v-text-field label="Address" v-model="editedItem.address" />
+      </v-flex>
       <v-flex xs6 sm3>
         <v-text-field label="Lat" v-model="editedItem.lat" />
       </v-flex>
@@ -23,9 +26,6 @@
       </v-flex>
       <v-flex xs12 sm6>
         <v-text-field label="Website" v-model="editedItem.website" />
-      </v-flex>
-      <v-flex xs12>
-        <v-text-field label="Address" v-model="editedItem.address" />
       </v-flex>
     </template>
   </crud-dialog>

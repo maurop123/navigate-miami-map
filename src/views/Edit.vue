@@ -15,10 +15,10 @@
           <template slot="items" slot-scope="props">
             <td>{{ props.item.name }}</td>
             <td class="text-xs-right">{{ props.item.category }}</td>
+            <td class="text-xs-right">{{ props.item.address }}</td>
             <td class="text-xs-right">{{ props.item.lat }}</td>
             <td class="text-xs-right">{{ props.item.lon }}</td>
             <td class="text-xs-right">{{ props.item.website }}</td>
-            <td class="text-xs-right">{{ props.item.address }}</td>
             <td class="justify-center layout px-0">
               <v-btn icon class="mx-0" @click="editItem(props.item)">
                 <v-icon color="blue">edit</v-icon>
@@ -52,6 +52,9 @@
           text: 'Category',
           value: 'category',
         }, {
+          text: 'Address',
+          value: 'address',
+        }, {
           text: 'Lat',
           value: 'lat',
         }, {
@@ -60,9 +63,6 @@
         }, {
           text: 'Website',
           value: 'website',
-        }, {
-          text: 'Address',
-          value: 'address',
         }, {
           text: 'Actions'
         }],
@@ -89,3 +89,12 @@
     },
   }
 </script>
+
+<style scoped>
+  .ellipsis {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+</style>

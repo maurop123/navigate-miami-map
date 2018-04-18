@@ -70,14 +70,15 @@
       close() {
         this.dialog = false
         this.$emit('cancel')
-        this.reset()
       },
       save() {
         this.$emit('save', this.editedItem)
+        this.reset()
         this.close()
       },
       reset() {
-        this.editedItem = this.defaultItem
+        // this.editedItem = this.defaultItem
+        this.editedItem = {}
       },
     },
   }

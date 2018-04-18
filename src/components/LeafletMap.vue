@@ -24,12 +24,12 @@
       return {
         bus,
         map: null,
-        categories,
         center: [25.766, -80.195],
         zoom: 13,
       }
     },
     computed: {
+      categories() { return this.$store.state.categories },
       locations() { return this.$store.state.locations },
       markers() {
         return this.locations.map(l => {
@@ -51,6 +51,11 @@
           return marker
         })
       },
+    },
+    watch: {
+      locations() {
+        this.showAllMarkers()
+      }
     },
     mounted() {
       this.map = L.map(this.$refs.map)

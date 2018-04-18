@@ -14,7 +14,27 @@ export default new Vuex.Store({
     categories: [{
       name: 'Education',
       icon: 'school',
-      color: 'yellow',
+      color: 'rgb(0,102,255)',
+    }, {
+      name: 'Funding',
+      icon: 'flash_on',
+      color: 'green',
+    }, {
+      name: 'Economic Dev',
+      icon: 'trending_up',
+      color: 'orange',
+    }, {
+      name: 'Regular Events',
+      icon: 'audiotrack',
+      color: '#dada00',
+    }, {
+      name: 'Coworking',
+      icon: 'devices',
+      color: '#e6aeb8',
+    }, {
+      name: 'Maker Space',
+      icon: 'build',
+      color: 'purple',
     }],
   },
   mutations: {
@@ -52,5 +72,5 @@ export default new Vuex.Store({
       db.del('locations', payload).subscribe()
     },
   },
-  plugins: [createPersistedState({ key: 'navigate-miami' })],
+  plugins: [createPersistedState({ key: 'navigate-miami-2' })],
 })
