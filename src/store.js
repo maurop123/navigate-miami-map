@@ -11,31 +11,7 @@ const { set, pop, updateCollection } = store
 export default new Vuex.Store({
   state: {
     locations: [],
-    categories: [{
-      name: 'Education',
-      icon: 'school',
-      color: 'rgb(0,102,255)',
-    }, {
-      name: 'Funding',
-      icon: 'flash_on',
-      color: 'green',
-    }, {
-      name: 'Economic Dev',
-      icon: 'trending_up',
-      color: 'orange',
-    }, {
-      name: 'Regular Events',
-      icon: 'audiotrack',
-      color: '#dada00',
-    }, {
-      name: 'Coworking',
-      icon: 'devices',
-      color: '#e6aeb8',
-    }, {
-      name: 'Maker Space',
-      icon: 'build',
-      color: 'purple',
-    }],
+    categories: [],
   },
   mutations: {
     popLocation: pop('locations'),
@@ -45,10 +21,18 @@ export default new Vuex.Store({
       const index = state.locations.indexOf(payload)
       state.locations.splice(index, 1)
     },
+    popCategory: pop('categories'),
+    setCategories: set('categories'),
+    updateCategories: updateCollection('categories'),
+    removeCategory(state, payload) {
+      const index = state.categories.indexOf(payload)
+      state.categories.splice(index, 1)
+    },
   },
   actions: {
     hydrate({ dispatch }) {
       dispatch('getLocations')
+      dispatch('getCategories')
     },
     getLocations({ commit }) {
 
@@ -58,7 +42,23 @@ export default new Vuex.Store({
         }
       })
     },
-    save({ commit }, payload) {
+    getCategories({ commit }) {
+
+      db.get('categories').subscribe(cats => {
+        if (cats) {
+          commit('setCategories', cats)
+        }
+      })
+    },
+    saveCategory({ commit }, payload) {
+      commit('updateCategories', payload)
+
+      db.update('categories', payload).subscribe(res => {
+        if (!payload.id) commit('popCategory')
+        commit('updateCategories', res)
+      })
+    },
+    saveLocation({ commit }, payload) {
       commit('updateLocations', payload)
 
       db.update('locations', payload).subscribe(res => {
@@ -66,11 +66,16 @@ export default new Vuex.Store({
         commit('updateLocations', res)
       })
     },
-    del({ commit }, payload) {
+    delLocation({ commit }, payload) {
       commit('removeLocation', payload)
 
       db.del('locations', payload).subscribe()
     },
+    delCategory({ commit }, payload) {
+      commit('removeCategory', payload)
+
+      db.del('categories', payload).subscribe()
+    },
   },
-  plugins: [createPersistedState({ key: 'navigate-miami-2' })],
+  plugins: [createPersistedState({ key: 'navigate-miami-4' })],
 })

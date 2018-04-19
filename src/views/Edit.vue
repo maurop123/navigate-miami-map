@@ -27,6 +27,7 @@
             <location-editor />
           </v-tab-item>
           <v-tab-item key="categories">
+            <category-editor />
           </v-tab-item>
         </v-tabs-items>
       </v-flex>
@@ -36,12 +37,14 @@
 
 <script>
   import LocationEditor from '@/components/LocationEditor'
+  import CategoryEditor from '@/components/CategoryEditor'
   import bus from '@/bus'
 
   export default {
     name: 'edit-view',
     components: {
       LocationEditor,
+      CategoryEditor,
     },
     data() {
       return {
@@ -57,7 +60,7 @@
     },
     methods: {
       open() {
-        bus.$emit('openLocationModal')
+        bus.$emit(`open-${this.activeTabKey}-modal`)
       },
     },
   }

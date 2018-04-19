@@ -4,11 +4,11 @@
 </template>
 
 <script>
-  import TableEditor from '@/components/TableEditor'
+  import TableEditor from '@/components/CatTableEditor'
   import bus from '@/bus'
 
   export default {
-    name: 'location-editor',
+    name: 'category-editor',
     components: {
       TableEditor,
     },
@@ -18,20 +18,11 @@
           text: 'Name',
           value: 'name',
         }, {
-          text: 'Category',
-          value: 'category',
+          text: 'Material Icon',
+          value: 'icon',
         }, {
-          text: 'Address',
-          value: 'address',
-        }, {
-          text: 'Lat',
-          value: 'lat',
-        }, {
-          text: 'Lon',
-          value: 'lon',
-        }, {
-          text: 'Website',
-          value: 'website',
+          text: 'Color',
+          value: 'color',
         }, {
           text: 'Actions',
           value: 'actions', // just to avoid vuetify warning
@@ -40,11 +31,11 @@
     },
     computed: {
       items() {
-        return this.$store.state.locations || []
+        return this.$store.state.categories || []
       },
     },
     mounted() {
-      bus.$on('open-location-modal', () => {
+      bus.$on('open-category-modal', () => {
         this.$refs.editor.open()
       })
     },
