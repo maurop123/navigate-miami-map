@@ -4,6 +4,8 @@
     :item="item"
     @save="save"
     @cancel="cancel"
+    ref="locationModal"
+    hide-activator
   >
     <template slot-scope="{ editedItem }">
       <v-flex xs12 sm6>
@@ -33,6 +35,7 @@
 
 <script>
   import CrudDialog from '@/components/CrudDialog'
+  import bus from '@/bus'
 
   export default {
     name: 'location-modal',
@@ -46,6 +49,11 @@
       categories() {
         return this.$store.state.categories.map(c => c.name)
       },
+    },
+    mounted() {
+      bus.$on('openLocationModal', () => {
+        this.$refs.locationModal.open()
+      })
     },
     methods: {
       save(item) {

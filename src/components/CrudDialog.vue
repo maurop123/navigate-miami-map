@@ -1,6 +1,10 @@
 <template>
   <v-dialog v-model="dialog" max-width="500px">
-    <v-btn color="primary" dark slot="activator" class="mb-2">New Item</v-btn>
+    <v-btn v-if="!hideActivator" slot="activator"
+      color="primary" dark class="mb-2"
+    >
+      New Item
+    </v-btn>
     <v-card>
       <v-card-title>
         <span class="headline">
@@ -42,6 +46,7 @@
       header: String,
       fields: Array,
       item: Object,
+      hideActivator: Boolean,
     },
     data() {
       const flatObject = obj => obj
@@ -79,6 +84,9 @@
       reset() {
         // this.editedItem = this.defaultItem
         this.editedItem = {}
+      },
+      open() {
+        this.dialog = true
       },
     },
   }
