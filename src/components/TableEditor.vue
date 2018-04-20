@@ -14,7 +14,7 @@
         <v-flex xs12 sm6>
           <v-select v-model="editedItem.category"
             label="Category"
-            :items="categories"
+            :items="cats"
           />
         </v-flex>
         <v-flex xs12>
@@ -34,7 +34,7 @@
     <v-data-table v-bind="{ headers, items }" hide-actions>
       <template slot="items" slot-scope="props">
         <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.category }}</td>
+        <td class="text-xs-right">{{ getCatsName(props.item.category) }}</td>
         <td class="text-xs-right">{{ props.item.address }}</td>
         <td class="text-xs-right">{{ props.item.lat }}</td>
         <td class="text-xs-right">{{ props.item.lon }}</td>
@@ -71,10 +71,20 @@
     },
     computed: {
       categories() {
-        return this.$store.state.categories.map(c => c.name)
+        return this.$store.state.categories
+      },
+      cats() {
+        return this.categories.map(c => ({
+          text: c.name,
+          value: c.id,
+        }))
       },
     },
     methods: {
+      getCatsName(id) {
+        const cat = this.categories.find(c => c.id === id)
+        return cat ? cat.name : ''
+      },
       open() {
         this.$refs.editorModal.open()
       },

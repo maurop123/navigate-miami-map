@@ -26,19 +26,49 @@
         map: null,
         center: [25.766, -80.195],
         zoom: 13,
+        markers: [],
       }
     },
     computed: {
       categories() { return this.$store.state.categories },
       locations() { return this.$store.state.locations },
-      markers() {
-        return this.locations.map(l => {
+    },
+    watch: {
+      locations(val) {
+        if (val && this.categories) {
+          this.setMarkers()
+        }
+      },
+      categories(val) {
+        if (val && this.locations) {
+          this.setMarkers()
+        }
+      },
+    },
+    mounted() {
+      this.map = L.map(this.$refs.map)
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+      }).addTo(this.map)
+      this.setMapView(this.center, this.zoom)
+      this.showAllMarkers()
+      this.bus.$on('pickLocation', val => this.handleLocationClick(val))
+    },
+    methods: {
+      setMarkers() {
+        this.hideAllMarkers()
+        this.makers = []
+        this.addMarkers()
+        this.showAllMarkers()
+      },
+      addMarkers() {
+        this.markers = this.locations.map(l => {
           const marker = L.marker.svgMarker([l.lat, l.lon], {
             title: l.name,
             alt: l.name,
             iconOptions: {
               fillOpacity: 1,
-              color: this.getCat(l).color,
+              color: this.getCatsColor(l),
             },
           })
           marker.bindPopup(`
@@ -51,24 +81,9 @@
           return marker
         })
       },
-    },
-    watch: {
-      locations() {
-        this.showAllMarkers()
-      }
-    },
-    mounted() {
-      this.map = L.map(this.$refs.map)
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
-      }).addTo(this.map)
-      this.setMapView(this.center, this.zoom)
-      this.showAllMarkers()
-      this.bus.$on('pickLocation', val => this.handleLocationClick(val))
-    },
-    methods: {
-      getCat(loc) {
-        return this.categories.find(c => c.name === loc.category)
+      getCatsColor(loc) {
+        const cat = this.categories.find(c => c.id === loc.category)
+        return cat ? cat.color : 'lightblue'
       },
       handleLocationClick(loc) {
         this.setMapView([loc.lat, loc.lon], 15)

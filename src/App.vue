@@ -84,7 +84,7 @@
       cats() {
         return this.categories.map(cat => {
           cat.items = this.locations.filter(loc => {
-            return loc.category === cat.name
+            return loc.category === cat.id
           })
           return cat
         })
