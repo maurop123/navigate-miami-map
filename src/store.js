@@ -77,5 +77,5 @@ export default new Vuex.Store({
       db.del('categories', payload).subscribe()
     },
   },
-  plugins: [createPersistedState({ key: 'navigate-miami-4' })],
+  // plugins: [createPersistedState({ key: 'navigate-miami-5' })],
 })
