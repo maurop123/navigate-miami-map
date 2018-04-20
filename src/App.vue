@@ -64,6 +64,7 @@
   import { categories, credits } from '@/data'
   import LocTile from '@/components/LocationTile.vue'
   import bus from '@/bus'
+  import _sortBy from 'lodash/sortBy'
 
   export default {
     name: 'app',
@@ -82,12 +83,12 @@
       categories() { return this.$store.state.categories },
       locations() { return this.$store.state.locations },
       cats() {
-        return this.categories.map(cat => {
+        return _sortBy(this.categories.map(cat => {
           cat.items = this.locations.filter(loc => {
             return loc.category === cat.id
           })
           return cat
-        })
+        }), ['name'])
       },
     },
     methods: {
