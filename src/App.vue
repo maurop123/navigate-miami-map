@@ -5,13 +5,15 @@
       absolute
       app
       id="sidebar"
+      class="pb-0"
     >
-      <v-list three-line>
+      <v-list three-line class="custom-flex fill-height">
         <v-list-group
           v-for="cat in cats"
           :key="cat.name"
           :prepend-icon="cat.icon"
           no-action
+          class="shrink"
         >
           <v-list-tile slot="activator">
             <v-list-tile-content :style="{ color: cat.color }">
@@ -24,10 +26,8 @@
             <loc-tile v-bind="item" />
           </v-list-tile>
         </v-list-group>
-      </v-list>
-      <div id="credits" class="mt-5 text-xs-center">
-        <v-list>
-        <v-list-group>
+        <div class="y-spacer" />
+        <v-list-group id="credits">
           <v-list-tile slot="activator">
             <v-list-tile-content>
               <v-list-tile-title class="text-xs-center">
@@ -44,8 +44,7 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
-        </v-list>
-      </div>
+      </v-list>
     </v-navigation-drawer>
     <v-toolbar app color="white">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -106,10 +105,6 @@
   }
 
   #credits {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
     & /deep/ .list__tile {
       height: 36px;
     }
@@ -117,5 +112,18 @@
 
   .underline {
     text-decoration: underline;
+  }
+
+  .y-spacer {
+    flex-grow: 1;
+  }
+
+  .custom-flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shrink /deep/ .list__group__header > div:not(.list__group__header__prepend-icon):not(.list__group__header__append-icon) {
+    flex: 1 1 auto;
   }
 </style>
