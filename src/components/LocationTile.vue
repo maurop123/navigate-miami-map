@@ -8,9 +8,11 @@
         v-if="address">
         {{ address }}
       </v-list-tile-title>
-      <v-list-tile-sub-title class="caption"
-        v-if="website && website !== 'undefined'">
+      <v-list-tile-sub-title class="caption pointer"
+        v-if="website && website !== 'undefined'"
+        @click="open(website)">
         {{ website }}
+        <v-icon small>open_in_new</v-icon>
       </v-list-tile-sub-title>
     </template>
     <template v-else>
@@ -22,6 +24,8 @@
 </template>
 
 <script>
+  import { open } from '@/utils'
+
   export default {
     name: 'location-tile',
     props: {
@@ -29,5 +33,14 @@
       address: String,
       website: String,
     },
+    methods: {
+      open,
+    },
   }
 </script>
+
+<style scoped>
+  .pointer {
+    cursor: pointer;
+  }
+</style>

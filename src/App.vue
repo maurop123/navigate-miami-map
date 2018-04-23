@@ -64,6 +64,7 @@
   import LocTile from '@/components/LocationTile.vue'
   import bus from '@/bus'
   import _sortBy from 'lodash/sortBy'
+  import { open } from '@/utils'
 
   export default {
     name: 'app',
@@ -90,9 +91,7 @@
       },
     },
     methods: {
-      open(link) {
-        if (link) window.open(link)
-      },
+      open,
     },
   }
 </script>
