@@ -62,7 +62,8 @@
         this.showAllMarkers()
       },
       addMarkers() {
-        this.markers = this.locations.map(l => {
+        this.markers = this.locations
+        .filter(({lat, lon}) => lat && lon).map(l => {
           const marker = L.marker.svgMarker([l.lat, l.lon], {
             title: l.name,
             alt: l.name,
