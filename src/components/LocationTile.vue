@@ -10,9 +10,9 @@
       </v-list-tile-title>
       <v-list-tile-sub-title class="caption pointer"
         v-if="website && website !== 'undefined'"
-        @click="open(website)">
+        @click="clickable && open(website)">
         {{ website }}
-        <v-icon small>open_in_new</v-icon>
+        <v-icon small v-if="clickable">open_in_new</v-icon>
       </v-list-tile-sub-title>
     </template>
     <template v-else>
@@ -32,6 +32,7 @@
       name: String,
       address: String,
       website: String,
+      clickable: Boolean,
     },
     methods: {
       open,

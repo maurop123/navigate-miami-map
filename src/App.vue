@@ -14,6 +14,7 @@
           :prepend-icon="cat.icon"
           no-action
           class="shrink"
+          @input="e => toggleCat(cat, e)"
         >
           <v-list-tile slot="activator">
             <v-list-tile-content :style="{ color: cat.color }">
@@ -54,7 +55,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <router-view />
+      <router-view v-bind="{ locations }" :categories="mapCats" />
     </v-content>
   </v-app>
 </template>
@@ -76,6 +77,7 @@
         bus,
         drawer: false,
         credits,
+        activeCat: null,
       }
     },
     computed: {
@@ -89,9 +91,15 @@
           return cat
         }), ['name'])
       },
+      mapCats() {
+        return this.activeCat ? [this.activeCat] : this.categories
+      },
     },
     methods: {
       open,
+      toggleCat(cat, val) {
+        this.activeCat = val ? cat : null
+      }
     },
   }
 </script>

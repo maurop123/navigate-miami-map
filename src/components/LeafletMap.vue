@@ -29,9 +29,15 @@
         markers: [],
       }
     },
-    computed: {
-      categories() { return this.$store.state.categories },
-      locations() { return this.$store.state.locations },
+    props: {
+      locations: {
+        type: Array,
+        default() { return this.$store.state.locations },
+      },
+      categories: {
+        type: Array,
+        default() { return this.$store.state.categories },
+      },
     },
     watch: {
       locations(val) {
@@ -63,7 +69,9 @@
       },
       addMarkers() {
         this.markers = this.locations
-        .filter(({lat, lon}) => lat && lon).map(l => {
+        .filter(({lat, lon}) => lat && lon)
+        .filter(l => this.getCatsColor(l))
+        .map(l => {
           const marker = L.marker.svgMarker([l.lat, l.lon], {
             title: l.name,
             alt: l.name,
@@ -77,6 +85,7 @@
               name="${l.name}"
               address="${l.address}"
               website="${l.website}"
+              clickable
             />
           `)
           return marker
@@ -84,7 +93,7 @@
       },
       getCatsColor(loc) {
         const cat = this.categories.find(c => c.id === loc.category)
-        return cat ? cat.color : 'lightblue'
+        return cat ? cat.color : false
       },
       handleLocationClick(loc) {
         this.setMapView([loc.lat, loc.lon], 15)
