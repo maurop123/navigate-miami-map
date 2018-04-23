@@ -75,7 +75,7 @@
             <location-tile
               name="${l.name}"
               address="${l.address}"
-              site-text="${l.website}"
+              website="${l.website}"
             />
           `)
           return marker

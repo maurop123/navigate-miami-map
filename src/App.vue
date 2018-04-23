@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import { categories, credits } from '@/data'
+  import { credits } from '@/data'
   import LocTile from '@/components/LocationTile.vue'
   import bus from '@/bus'
   import _sortBy from 'lodash/sortBy'
@@ -75,7 +75,6 @@
         bus,
         drawer: false,
         credits,
-        // categories,
       }
     },
     computed: {
