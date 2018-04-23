@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.1.0/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1d9865eec70acb5fe2521040ca12cf50.js"
+  "/precache-manifest.d9a8a3dc02edeee3bdab0e3907aea733.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "navigate-miami"});
