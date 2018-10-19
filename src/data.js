@@ -1,12 +1,13 @@
 export const credits = [{
-  name: 'Code For Miami',
-  link: 'http://codefor.miami/',
+  name: 'MarioTheMaker',
+  link: 'http://mariothemaker.com/',
 }, {
   name: 'MauroMadeIt',
   link: 'http://mauromadeit.com/',
+  /*
 }, {
-  name: 'MarioTheMaker',
-  link: 'http://mariothemaker.com/',
+  name: 'Code For Miami',
+  link: 'http://codefor.miami/',
 }, {
   name: 'Chris Scott',
 }, {
@@ -18,6 +19,7 @@ export const credits = [{
 }, {
   name: 'Venture Cafe',
   link: 'http://venturecafemiami.org/',
+  */
 }]
 
 export default {

@@ -4,9 +4,26 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-import { store, Database } from 'mauromadeit-vue-commons'
-const db = new Database({ ref: 'navigate-miami' })
-const { set, pop, updateCollection } = store
+import { database } from '@mauromadeit/vue-commons'
+const db = new database({ ref: 'navigate-miami' })
+
+function pop(key) {
+  return (state, payload) => state[key].pop(payload)
+}
+
+function set(key) {
+  return (state, payload) => state[key] = payload
+}
+
+function updateCollection(key) {
+  return (state, payload) => {
+    if (state[key].find(x => x.id === payload.id)) {
+      return updateWithId(key)(state, payload)
+    } else {
+      return push(key)(state, payload)
+    }
+  }
+}
 
 export default new Vuex.Store({
   state: {
