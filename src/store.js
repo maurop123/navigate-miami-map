@@ -11,6 +11,10 @@ function pop(key) {
   return (state, payload) => state[key].pop(payload)
 }
 
+function push(key) {
+  return (state, payload) => state[key].push(payload)
+}
+
 function set(key) {
   return (state, payload) => state[key] = payload
 }
