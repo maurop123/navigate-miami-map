@@ -1,14 +1,14 @@
 <template>
   <v-list-tile-content>
     <template v-if="name">
-      <v-list-tile-title class="body-2">
+      <v-list-tile-title class="body-2 bold">
         {{ name }}
       </v-list-tile-title>
       <v-list-tile-title class="body-1"
         v-if="address">
         {{ address }}
       </v-list-tile-title>
-      <v-list-tile-sub-title class="caption pointer"
+      <v-list-tile-sub-title class="caption clickable"
         v-if="website && website !== 'undefined'"
         @click="clickable && open(website)">
         {{ website }}
@@ -41,7 +41,7 @@
 </script>
 
 <style scoped>
-  .pointer {
-    cursor: pointer;
+  .bold {
+    font-weight: 900;
   }
 </style>

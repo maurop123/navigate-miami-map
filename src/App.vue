@@ -50,7 +50,7 @@
     <v-toolbar app color="white">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-spacer />
-      <v-toolbar-title @click="$router.push('/')">
+      <v-toolbar-title class="clickable" @click="$router.push('/')">
         Navigate Miami
       </v-toolbar-title>
     </v-toolbar>
@@ -131,5 +131,11 @@
 
   .shrink /deep/ .list__group__header > div:not(.list__group__header__prepend-icon):not(.list__group__header__append-icon) {
     flex: 1 1 auto;
+  }
+</style>
+
+<style lang="scss">
+  .clickable {
+    cursor: pointer;
   }
 </style>
